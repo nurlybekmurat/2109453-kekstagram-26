@@ -24,5 +24,10 @@
   "engines": {
     "node": "16.x",
     "npm": "8.x"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "none"
   }
 }
