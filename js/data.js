@@ -1,5 +1,5 @@
 import { getRandomPositiveInteger, getRandomNotRepeated } from './util.js';
-
+const POST_NUMBER = 25;
 let index = 0;
 
 const messageTemplate = [
@@ -33,13 +33,10 @@ const nameTemplate = [
   'Михаил',
 ];
 
-const createPost = () => {
-  index++;
-  return {
-    id: index,
-    url: `photos/${index}.jpg`,
-    likes: getRandomPositiveInteger(15, 200),
-    comments: {
+const createComment = (length) => {
+  const newArr = [];
+  for (let i = 0; i < length; i++) {
+    newArr.push({
       id: getRandomNotRepeated(),
       avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
       message:
@@ -49,8 +46,21 @@ const createPost = () => {
       name: nameTemplate[
         getRandomPositiveInteger(0, messageTemplate.length - 1)
       ],
-    },
+    });
+  }
+  return newArr;
+};
+
+const createPost = () => {
+  index++;
+  return {
+    id: index,
+    url: `photos/${index}.jpg`,
+    likes: getRandomPositiveInteger(15, 200),
+    comments: createComment(getRandomPositiveInteger(1, 2)),
   };
 };
 
-export { createPost };
+const createRandomPosts = () => Array.from({ length: POST_NUMBER }, createPost);
+
+export { createRandomPosts };
