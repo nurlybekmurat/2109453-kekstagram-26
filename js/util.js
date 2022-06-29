@@ -8,7 +8,7 @@ function getRandomPositiveInteger(a, b) {
 const notRepeatedNumberList = [];
 
 function getRandomNotRepeated() {
-  const randomNumber = getRandomPositiveInteger(1, 50);
+  const randomNumber = getRandomPositiveInteger(1, 9999);
 
   if (!notRepeatedNumberList.includes(randomNumber)) {
     notRepeatedNumberList.push(randomNumber);

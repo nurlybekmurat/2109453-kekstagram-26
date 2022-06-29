@@ -80,7 +80,7 @@ const createPost = () => {
       descriptionTemplate[
         getRandomPositiveInteger(0, descriptionTemplate.length - 1)
       ],
-    comments: createComment(getRandomPositiveInteger(1, 2)),
+    comments: createComment(getRandomPositiveInteger(1, 10)),
   };
 };
 
