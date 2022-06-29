@@ -1,4 +1,4 @@
-const bigPicture = document.querySelector('.big-picture');
+const bigPictureElement = document.querySelector('.big-picture');
 const bigPictureImage = document.querySelector('.big-picture__img img');
 const bigPictureLikes = document.querySelector('.likes-count');
 const bigPictureDescription = document.querySelector('.social__caption');
@@ -36,7 +36,7 @@ const showComments = (elements) => {
 };
 
 const showPicture = (url, likes, description, comments) => {
-  bigPicture.classList.remove('hidden');
+  bigPictureElement.classList.remove('hidden');
   document.body.classList.add('modal-open');
   bigPictureImage.src = url;
   bigPictureLikes.textContent = likes;
@@ -66,7 +66,7 @@ const showPicture = (url, likes, description, comments) => {
     if (evt.key === 'Escape' || evt.target === closeBtn) {
       commentsStart = 0;
       commentsEnd = 5;
-      bigPicture.classList.add('hidden');
+      bigPictureElement.classList.add('hidden');
       document.body.classList.remove('modal-open');
       commentLoader.removeEventListener('click', loadComments);
       commentList.textContent = '';
