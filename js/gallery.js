@@ -42,10 +42,11 @@ const showPicture = (url, likes, description, comments) => {
   bigPictureLikes.textContent = likes;
   bigPictureDescription.textContent = description;
   commentList.textContent = '';
-  commentCount.innerHTML = `${
+  const commentContent = `${
     commentsEnd < comments.length ? commentsEnd : comments.length
   } из <span class="comments-count">${(commentCountNumber.textContent =
     comments.length)}</span> комментариев`;
+  commentCount.innerHTML = commentContent;
   commentLoader.style.display = 'block';
 
   showComments(comments);

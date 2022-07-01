@@ -2,7 +2,7 @@ import { getRandomPositiveInteger, getRandomNotRepeated } from './util.js';
 const POST_NUMBER = 25;
 let index = 0;
 
-const messageTemplate = [
+const messages = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -11,7 +11,7 @@ const messageTemplate = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-const descriptionTemplate = [
+const descriptions = [
   'Когда радости нет предела.',
   'Грусть, я тебя не боюсь.',
   'Поднимаю настроение мини–фотосессией.',
@@ -29,7 +29,7 @@ const descriptionTemplate = [
   'Досадно, но ладно.',
 ];
 
-const nameTemplate = [
+const names = [
   'Анна',
   'София',
   'Виктория',
@@ -58,13 +58,8 @@ const createComment = (length) => {
     newArr.push({
       id: getRandomNotRepeated(),
       avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
-      message:
-        messageTemplate[
-          getRandomPositiveInteger(0, messageTemplate.length - 1)
-        ],
-      name: nameTemplate[
-        getRandomPositiveInteger(0, messageTemplate.length - 1)
-      ],
+      message: messages[getRandomPositiveInteger(0, messages.length - 1)],
+      name: names[getRandomPositiveInteger(0, messages.length - 1)],
     });
   }
   return newArr;
@@ -77,9 +72,7 @@ const createPost = () => {
     url: `photos/${index}.jpg`,
     likes: getRandomPositiveInteger(15, 200),
     description:
-      descriptionTemplate[
-        getRandomPositiveInteger(0, descriptionTemplate.length - 1)
-      ],
+      descriptions[getRandomPositiveInteger(0, descriptions.length - 1)],
     comments: createComment(getRandomPositiveInteger(1, 10)),
   };
 };
