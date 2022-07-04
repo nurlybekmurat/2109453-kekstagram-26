@@ -1,13 +1,12 @@
-function getRandomPositiveInteger(a, b) {
+const getRandomPositiveInteger = (a, b) => {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
-}
+};
 
-const notRepeatedNumberList = [];
-
-function getRandomNotRepeated() {
+const getRandomNotRepeated = () => {
+  const notRepeatedNumberList = [];
   const randomNumber = getRandomPositiveInteger(1, 9999);
 
   if (!notRepeatedNumberList.includes(randomNumber)) {
@@ -15,6 +14,8 @@ function getRandomNotRepeated() {
     return randomNumber;
   }
   return getRandomNotRepeated();
-}
+};
 
-export { getRandomPositiveInteger, getRandomNotRepeated };
+const checkStringLength = (string, length) => string.length <= length;
+
+export { getRandomPositiveInteger, getRandomNotRepeated, checkStringLength };

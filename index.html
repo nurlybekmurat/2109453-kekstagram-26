@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="nouislider/nouislider.css" rel="stylesheet">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -126,12 +127,11 @@
                 <!-- Добавление хэш-тегов и комментария к изображению -->
                 <fieldset class="img-upload__text text">
                   <div class="img-upload__field-wrapper">
-                    <input type="text" class="text__hashtags" value="#dfsd #sdaf" name="hashtags" placeholder="#ХэшТег"
+                    <input type="text" class="text__hashtags" value="" name="hashtags" placeholder="#ХэшТег"
                       maxlength="100">
                   </div>
                   <div class="img-upload__field-wrapper">
-                    <textarea class="text__description" name="description" placeholder="Ваш комментарий..."
-                      maxlength="140"></textarea>
+                    <textarea class="text__description" name="description" placeholder="Ваш комментарий..."></textarea>
                   </div>
                 </fieldset>
 
@@ -249,8 +249,9 @@
   <template id="messages">
     <div class="img-upload__message  img-upload__message--loading">Загружаем...</div>
   </template>
+  <script src="nouislider/nouislider.js"></script>
   <script src="pristine/pristine.min.js"></script>
-  <script src="/js/main.js" type="module"></script>
+  <script src="js/main.js" type="module"></script>
 </body>
 
 </html>
