@@ -2,7 +2,7 @@ import { createRandomPosts } from './data.js';
 import { showPicture } from './gallery.js';
 
 const randonPicturesTemplate = document.querySelector('#picture').content;
-const picture = document.querySelector('.pictures');
+const picturesElement = document.querySelector('.pictures');
 const randonPictures = createRandomPosts();
 const randonPicturesFragment = document.createDocumentFragment();
 
@@ -19,6 +19,6 @@ randonPictures.forEach(({ url, likes, description, comments }) => {
   randonPicturesFragment.append(pictureElement);
 });
 
-picture.append(randonPicturesFragment);
+picturesElement.append(randonPicturesFragment);
 
 export { randonPictures };

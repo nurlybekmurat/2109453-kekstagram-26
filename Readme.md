@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 - Студент: [Nurlybek Muratov](https://up.htmlacademy.ru/javascript/26/user/2109453).
-- Наставник: `Сергей Рожков`.
+- Наставник: [Сергей Рожков](https://htmlacademy.ru/profile/id1069033)..
 
 ---
 
