@@ -4,6 +4,7 @@ import {
   hashtagInputElement,
   textDescriptionElement,
 } from './pristine-utils.js';
+import { sliderElementWrapper } from './change-effect.js';
 
 const uploadButtonElement = document.querySelector('#upload-file');
 const closeButtonElement = document.querySelector('#upload-cancel');
@@ -40,6 +41,8 @@ const closeForm = (evt) => {
     uploadButtonElement.value = '';
     number.value = 100;
     previewImageElement.style.transform = `scale(${number.value / 100})`;
+    sliderElementWrapper.noUislider.destroy();
+    sliderElementWrapper.style.display = 'none';
   }
   closeButtonElement.removeEventListener('click', closeForm);
   document.removeEventListener('keydown', closeForm);

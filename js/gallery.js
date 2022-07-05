@@ -18,7 +18,7 @@ const showComments = (elements) => {
     } из <span class="comments-count">${(commentCountNumber.textContent =
       elements.length)}</span> комментариев`;
     commentCount.innerHTML = commentCountOver;
-    commentLoader.style.display = 'none';
+    commentLoader.classList.add('hidden');
   }
   const newArr = elements.slice(commentsStart, commentsEnd);
   newArr.forEach((element) => {
@@ -47,7 +47,7 @@ const showPicture = (url, likes, description, comments) => {
   } из <span class="comments-count">${(commentCountNumber.textContent =
     comments.length)}</span> комментариев`;
   commentCount.innerHTML = commentContent;
-  commentLoader.style.display = 'block';
+  commentLoader.classList.remove('hidden');
 
   showComments(comments);
 
