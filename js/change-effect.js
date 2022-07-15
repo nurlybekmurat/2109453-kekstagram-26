@@ -1,6 +1,3 @@
-window.noUiSlider = noUiSlider;
-
-// import { sliderElement } from './no-ui-slider.js';
 import { previewImageElement } from './form.js';
 
 const sliderElement = document.querySelector('.effect-level__slider');
@@ -17,6 +14,7 @@ noUiSlider.create(sliderElement, {
     min: 0,
     max: 1,
   },
+  connect: 'lower',
 });
 
 const changeEffect = (value) => {
@@ -113,4 +111,4 @@ sliderElement.noUiSlider.on('update', () => {
   effectValueElement.value = sliderElement.noUiSlider.get();
 });
 
-// export { changeEffect };
+export { sliderElementWrapper };
