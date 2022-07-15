@@ -18,7 +18,7 @@ const showComments = (elements) => {
     } из <span class="comments-count">${(commentCountNumber.textContent =
       elements.length)}</span> комментариев`;
     commentCount.innerHTML = commentCountOver;
-    commentLoader.style.display = 'none';
+    commentLoader.classList.add('hidden');
   }
   const newArr = elements.slice(commentsStart, commentsEnd);
   newArr.forEach((element) => {
@@ -47,7 +47,7 @@ const showPicture = (url, likes, description, comments) => {
   } из <span class="comments-count">${(commentCountNumber.textContent =
     comments.length)}</span> комментариев`;
   commentCount.innerHTML = commentContent;
-  commentLoader.style.display = 'block';
+  commentLoader.classList.remove('hidden');
 
   showComments(comments);
 
@@ -64,20 +64,27 @@ const showPicture = (url, likes, description, comments) => {
   commentLoader.addEventListener('click', loadComments);
 
   const closeImage = (evt) => {
-    if (evt.key === 'Escape' || evt.target === closeBtn) {
+    const bigPicturePreview = document.querySelector('.big-picture');
+    if (
+      evt.key === 'Escape' ||
+      evt.target === closeBtn ||
+      evt.target === bigPicturePreview
+    ) {
       commentsStart = 0;
       commentsEnd = 5;
       bigPictureElement.classList.add('hidden');
       document.body.classList.remove('modal-open');
       commentLoader.removeEventListener('click', loadComments);
       commentList.textContent = '';
+      closeBtn.removeEventListener('click', closeImage);
+      window.removeEventListener('keydown', closeImage);
+      document.removeEventListener('click', closeImage);
     }
-    closeBtn.removeEventListener('click', closeImage);
-    window.removeEventListener('keydown', closeImage);
   };
 
   closeBtn.addEventListener('click', closeImage);
   window.addEventListener('keydown', closeImage);
+  document.addEventListener('click', closeImage);
 };
 
 export { showPicture };

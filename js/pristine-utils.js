@@ -90,16 +90,4 @@ pristine.addValidator(
   errorMessages.descriptionLength
 );
 
-const validateForm = (evt) => {
-  const isValid = pristine.validate();
-  if (!isValid) {
-    evt.preventDefault();
-  }
-};
-
-export {
-  validateForm,
-  formElement,
-  hashtagInputElement,
-  textDescriptionElement,
-};
+export { formElement, hashtagInputElement, textDescriptionElement, pristine };
