@@ -4,3 +4,4 @@ import './form.js';
 import './pristine-utils.js';
 import './change-effect.js';
 import './api.js';
+import './util.js';

@@ -5,15 +5,12 @@ const getRandomPositiveInteger = (a, b) => {
   return Math.floor(result);
 };
 
-const getRandomNotRepeated = () => {
-  const notRepeatedNumberList = [];
-  const randomNumber = getRandomPositiveInteger(1, 9999);
-
-  if (!notRepeatedNumberList.includes(randomNumber)) {
-    notRepeatedNumberList.push(randomNumber);
-    return randomNumber;
+const getRandomNotRepeated = (max) => {
+  const randomNumbers = [];
+  for (let i = 0; i <= max; i++) {
+    randomNumbers.push(i);
   }
-  return getRandomNotRepeated();
+  return () => Number(randomNumbers.splice(getRandomPositiveInteger(0, randomNumbers.length - 1), 1));
 };
 
 const checkStringLength = (string, length) => string.length <= length;
@@ -39,9 +36,20 @@ const showAlert = (message) => {
   }, 3000);
 };
 
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
 export {
   getRandomPositiveInteger,
   getRandomNotRepeated,
   checkStringLength,
   showAlert,
+  debounce,
 };

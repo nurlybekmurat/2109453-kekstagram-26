@@ -99,8 +99,18 @@ const closeSuccessModal = (evt) => {
   }
 };
 
+const closeErrorModal = (evt) => {
+  document.addEventListener('keydown', closeForm);
+  if (evt.key === 'Escape') {
+    document.querySelector('.error').style.display = 'none';
+  } else if (evt.target === document.querySelector('.error')) {
+    document.querySelector('.error').style.display = 'none';
+  }
+};
+
 const setPhotoFormSubmit = (onSuccess) => {
   formElement.addEventListener('submit', (evt) => {
+    document.removeEventListener('keydown', closeForm);
     evt.preventDefault();
 
     const isValid = pristine.validate();
@@ -125,11 +135,8 @@ const setPhotoFormSubmit = (onSuccess) => {
             .addEventListener('click', () => {
               document.querySelector('.error').style.display = 'none';
             });
-          document.addEventListener('keydown', () => {
-            if (evt.key === 'Escape') {
-              document.querySelector('.error').style.display = 'none';
-            }
-          });
+          document.addEventListener('keydown', closeErrorModal);
+          document.addEventListener('click', closeErrorModal);
         },
         new FormData(evt.target)
       );
