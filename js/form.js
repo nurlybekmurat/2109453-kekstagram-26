@@ -6,6 +6,7 @@ import {
 } from './pristine-utils.js';
 import { sendData } from './api.js';
 import { sliderElementWrapper } from './change-effect.js';
+import { toggleDisabled } from './util.js';
 
 const uploadButtonElement = document.querySelector('#upload-file');
 const closeButtonElement = document.querySelector('#upload-cancel');
@@ -17,6 +18,9 @@ const successMessageTemplate = document.querySelector('#success').content;
 const successMessageElement = successMessageTemplate.cloneNode(true);
 const errorMessageTemplate = document.querySelector('#error').content;
 const errorMessageElement = errorMessageTemplate.cloneNode(true);
+const submitButton = document.querySelector('.img-upload__submit');
+
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 document.body.appendChild(successMessageElement);
 document.body.appendChild(errorMessageElement);
@@ -75,6 +79,7 @@ const closeFormSubmit = () => {
   number.value = 100;
   scaleValueElement.value = number.value + number.percent;
   previewImageElement.style.transform = `scale(${number.value / 100})`;
+  previewImageElement.style.filter = '';
   sliderElementWrapper.style.display = 'none';
   document.querySelector('.img-upload__control').style.display = 'none';
   closeButtonElement.removeEventListener('click', closeForm);
@@ -83,6 +88,15 @@ const closeFormSubmit = () => {
 };
 
 const showForm = () => {
+  const file = uploadButtonElement.files[0];
+  const fileName = file.name.toLowerCase();
+
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+
+  if (matches) {
+    previewImageElement.src = URL.createObjectURL(file);
+  }
+
   scaleValueElement.value = number.value + number.percent;
   overlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
@@ -112,12 +126,14 @@ const setPhotoFormSubmit = (onSuccess) => {
   formElement.addEventListener('submit', (evt) => {
     document.removeEventListener('keydown', closeForm);
     evt.preventDefault();
-
+    toggleDisabled(submitButton);
     const isValid = pristine.validate();
     if (isValid) {
       sendData(
         () => {
           onSuccess();
+          formElement.reset();
+          closeFormSubmit();
           document.querySelector('.success').style.display = 'flex';
           document
             .querySelector('.success__button')
@@ -128,6 +144,7 @@ const setPhotoFormSubmit = (onSuccess) => {
           document.addEventListener('click', closeSuccessModal);
         },
         () => {
+          toggleDisabled(submitButton);
           document.querySelector('.error').style.zIndex = 5;
           document.querySelector('.error').style.display = 'flex';
           document
